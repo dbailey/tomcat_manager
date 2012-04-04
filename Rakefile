@@ -17,8 +17,8 @@ Jeweler::Tasks.new do |gem|
   gem.name = "tomcat-manager"
   gem.homepage = "http://github.com/dbailey/tomcat-manager"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = "TomcatManager" 
+  gem.description = "Library for interacting with the tomcat manager web application." 
   gem.email = "dakota.bailey@gmail.com"
   gem.authors = ["Dakota Bailey"]
   # dependencies defined in Gemfile
