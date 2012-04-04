@@ -17,10 +17,11 @@ Jeweler::Tasks.new do |gem|
   gem.name = "tomcat-manager"
   gem.homepage = "http://github.com/dbailey/tomcat-manager"
   gem.license = "MIT"
-  gem.summary = "TomcatManager" 
-  gem.description = "Library for interacting with the tomcat manager web application." 
+  gem.summary = "TomcatManager"
+  gem.description = "Library for interacting with the tomcat manager web application."
   gem.email = "dakota.bailey@gmail.com"
   gem.authors = ["Dakota Bailey"]
+  gem.add_runtime_dependency 'rest_client', '> 0'
   # dependencies defined in Gemfile
 end
 Jeweler::RubygemsDotOrgTasks.new
