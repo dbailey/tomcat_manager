@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{tomcat-manager}
-  s.version = ""
+  s.version = "0.0.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Dakota Bailey"]
@@ -22,6 +22,7 @@ Gem::Specification.new do |s|
     "LICENSE",
     "README",
     "Rakefile",
+    "VERSION",
     "lib/tomcat_manager.rb",
     "lib/tomcat_manager/core.rb",
     "lib/tomcat_manager/tomcat_manager.rb",
