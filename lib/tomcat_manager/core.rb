@@ -57,7 +57,7 @@ class TomcatManager
 
 	def execute(cmd, options = {})
 		url = @base_url + '/' + cmd
-		opts = options.merge({:user => USER, :password => PASS})
+		opts = options.merge({:user => @user, :password => @pass})
 		resource = RestClient::Resource.new url, opts
 		resource.get
 	end
