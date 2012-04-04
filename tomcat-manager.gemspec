@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Dakota Bailey"]
   s.date = %q{2012-04-03}
-  s.description = %q{TODO: longer description of your gem}
+  s.description = %q{Library for interacting with the tomcat manager web application.}
   s.email = %q{dakota.bailey@gmail.com}
   s.extra_rdoc_files = [
     "LICENSE",
@@ -27,13 +27,14 @@ Gem::Specification.new do |s|
     "lib/tomcat_manager/tomcat_manager.rb",
     "test/helper.rb",
     "test/test_tomcat-manager.rb",
+    "tomcat-manager.gemspec",
     "tomcat_manager.gemspec"
   ]
   s.homepage = %q{http://github.com/dbailey/tomcat-manager}
   s.licenses = ["MIT"]
   s.require_paths = ["lib"]
   s.rubygems_version = %q{1.3.6}
-  s.summary = %q{TODO: one-line summary of your gem}
+  s.summary = %q{TomcatManager}
 
   if s.respond_to? :specification_version then
     current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
