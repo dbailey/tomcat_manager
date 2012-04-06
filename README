@@ -1,3 +1,6 @@
-This is a ruby library that allows access to the tomcat manager application. 
+This is a ruby library that allows access to the tomcat manager application.
 
- 
+
+See Also:
+http://tomcat.apache.org/tomcat-6.0-doc/manager-howto.html
+http://www.datadisk.co.uk/html_docs/java_app/tomcat6/tomcat6_admin.htm
