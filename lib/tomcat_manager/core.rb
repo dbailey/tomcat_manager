@@ -3,10 +3,12 @@
 class TomcatManager
 	@apps = nil
 
-	def initialize(base_url, user, pass)
+	def initialize(base_url, user, pass, timeout = nil, open_timeout = nil)
 		@base_url = base_url
 		@user = user
 		@pass = pass
+    @timeout = timeout
+    @open_timeout = open_timeout
 	end
 
   def undeploy(ctx_path)
@@ -57,7 +59,7 @@ class TomcatManager
 
 	def execute(cmd, options = {})
 		url = @base_url + '/' + cmd
-		opts = options.merge({:user => @user, :password => @pass})
+		opts = options.merge({:user => @user, :password => @pass, :timeout => @timeout, :open_timeout => @open_timeout})
 		resource = RestClient::Resource.new url, opts
 		resource.get
 	end
