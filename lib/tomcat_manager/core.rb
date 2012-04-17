@@ -15,7 +15,7 @@ class TomcatManager
       params = {"type" => type}
       opts[:headers] = {:params => params}
     end
-    results = execute("redeploy", opts)
+    results = execute("resources", opts)
     if !/^OK.*/.match results
       puts "Unknown error: \n" + results
       exit 1
