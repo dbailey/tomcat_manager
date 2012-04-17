@@ -26,10 +26,21 @@ class TomcatManager
 
   def serverinfo()
     results = execute("serverinfo")
-    if !/^OK.*/.match results
+    lines = results.split "\n"
+    if !/^OK.*/.match lines[0]
       puts "Unknown error: \n" + results
       exit 1
     end
+    info = {}
+    rg = /^(.*):(.*)$/
+    lines.slice(1, lines.length).each { |line|
+      data = rg.match line
+      name = data[1].strip
+      value = data[2].strip
+      info[name] = value
+    }
+    return info
+
     return results
   end
 
