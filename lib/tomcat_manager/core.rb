@@ -15,7 +15,7 @@ class TomcatManager
       params = {"type" => type}
       opts[:headers] = {:params => params}
     end
-    results = execute("resources", opts)
+    results = do_get("resources", opts)
     lines = results.split "\n"
     if !/^OK.*/.match lines[0]
       puts "Unknown error: \n" + results
@@ -35,7 +35,7 @@ class TomcatManager
   end
 
   def serverinfo()
-    results = execute("serverinfo")
+    results = do_get("serverinfo")
     lines = results.split "\n"
     if !/^OK.*/.match lines[0]
       puts "Unknown error: \n" + results
@@ -56,7 +56,7 @@ class TomcatManager
 
   def redeploy(ctx_path)
     params = {"path" => ctx_path}
-    results = execute("redeploy", {:headers => {:params => params}})
+    results = do_get("redeploy", {:headers => {:params => params}})
     if !/^OK.*/.match results
       puts "Unknown error: \n" + results
       exit 1
@@ -66,7 +66,7 @@ class TomcatManager
 
   def undeploy(ctx_path)
     params = {"path" => ctx_path}
-    results = execute("undeploy", {:headers => {:params => params}})
+    results = do_get("undeploy", {:headers => {:params => params}})
     if !/^OK.*/.match results
       puts "Unknown error: \n" + results
       exit 1
@@ -77,7 +77,17 @@ class TomcatManager
 	def deploy(ctx_path, war_path)
 		params = {"path" => ctx_path,
       "war" => war_path}
-		results = execute("deploy", {:headers => {:params => params}})
+		results = do_get("deploy", {:headers => {:params => params}})
+ 		if !/^OK.*/.match results
+			puts "Unknown error: \n" + results
+			exit 1
+		end
+		return results
+	end
+
+	def remote_deploy(ctx_path, file)
+		params = {"path" => ctx_path}
+		results = do_put_with_file("deploy", file, {:headers => {:params => params}})
  		if !/^OK.*/.match results
 			puts "Unknown error: \n" + results
 			exit 1
@@ -86,7 +96,7 @@ class TomcatManager
 	end
 
 	def list()
-    apps_raw = execute("list")
+    apps_raw = do_get("list")
     lines = apps_raw.split "\n"
     if !/^OK.*/.match lines[0]
       die "Unknown error: \n" + apps_raw
@@ -108,10 +118,17 @@ class TomcatManager
 		self.list[name]
 	end
 
-	def execute(cmd, options = {})
+	def do_get(cmd, options = {})
 		url = @base_url + '/' + cmd
 		opts = options.merge({:user => @user, :password => @pass, :timeout => @timeout, :open_timeout => @open_timeout})
 		resource = RestClient::Resource.new url, opts
 		resource.get
+	end
+
+	def do_put_with_file(cmd, file, options = {})
+		url = @base_url + '/' + cmd
+		opts = options.merge({:user => @user, :password => @pass, :timeout => @timeout, :open_timeout => @open_timeout})
+		resource = RestClient::Resource.new url, opts
+		resource.put File.read(file)
 	end
 end
